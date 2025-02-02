@@ -1,36 +1,12 @@
-class StringBuilder {
-  #value; // Оголошення приватної властивості
+// Отримуємо посилання на елементи
+const nameInput = document.querySelector("#name-input");
+const nameOutput = document.querySelector("#name-output");
 
-  constructor(initialValue) {
-    this.#value = initialValue; // Ініціалізація рядка
-  }
+// Додаємо слухач події input
+nameInput.addEventListener("input", (event) => {
+  // Отримуємо значення з інпуту та очищаємо його від пробілів
+  const inputValue = event.target.value.trim();
 
-  getValue() {
-    return this.#value; // Повертає поточне значення рядка
-  }
-
-  padEnd(str) {
-    this.#value += str; // Додає str в кінець рядка
-  }
-
-  padStart(str) {
-    this.#value = str + this.#value; // Додає str на початок рядка
-  }
-
-  padBoth(str) {
-    this.#value = str + this.#value + str; // Додає str з обох сторін
-  }
-}
-
-// Перевірка коректності роботи класу
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+  // Якщо інпут порожній, виводимо "Anonymous", інакше виводимо введений текст
+  nameOutput.textContent = inputValue || "Anonymous";
+});
